@@ -1,0 +1,12 @@
+com/meleva/dao/command/BuscaPessoaPorEmailCommand.class
+com/meleva/dao/command/BuscaPessoaPorEmailCommand$1.class
+com/meleva/modelo/Celular.class
+com/meleva/modelo/builder/PessoaBuilder.class
+com/meleva/aplicacao/controller/MonitorController.class
+com/meleva/aplicacao/config/DaosConfiguration.class
+com/meleva/aplicacao/config/DatabaseConfiguration.class
+com/meleva/modelo/Pessoa.class
+com/meleva/dao/PessoaDao.class
+com/meleva/aplicacao/server/Server.class
+com/meleva/dao/command/CriarPessoaCommand.class
+com/meleva/aplicacao/controller/PessoaController.class

@@ -1,0 +1,11 @@
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/modelo/Pessoa.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/aplicacao/config/DaosConfiguration.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/modelo/builder/PessoaBuilder.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/aplicacao/controller/MonitorController.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/aplicacao/server/Server.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/dao/command/BuscaPessoaPorEmailCommand.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/dao/PessoaDao.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/dao/command/CriarPessoaCommand.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/modelo/Celular.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/aplicacao/controller/PessoaController.java
+/home/sabrina/Documents/Projects/me-leva/core/src/main/java/com/meleva/aplicacao/config/DatabaseConfiguration.java
