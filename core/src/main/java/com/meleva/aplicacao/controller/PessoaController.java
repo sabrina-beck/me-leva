@@ -1,11 +1,9 @@
 package com.meleva.aplicacao.controller;
 
-import com.meleva.dao.PessoaDao;
 import com.meleva.modelo.Pessoa;
+import com.meleva.service.pessoa.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * @author sabrina on 16/05/16.
@@ -15,16 +13,16 @@ import java.util.Optional;
 public class PessoaController {
 
     @Autowired
-    PessoaDao pessoaDao;
+    PessoaService pessoaService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void buscar(@RequestBody Pessoa pessoa) {
-        pessoaDao.criar(pessoa);
+    public void novo(@RequestBody Pessoa pessoa) {
+        pessoaService.cadastro(pessoa);
     }
 
     @RequestMapping(value = "/busca", method = RequestMethod.GET)
     public Pessoa buscar(@RequestParam("email") String email) {
-        return pessoaDao.buscaPorEmail(email)
+        return pessoaService.buscaPorEmail(email)
                 .orElse(null);
     }
 

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -18,7 +17,7 @@ public class DaosConfiguration {
 
     @Bean
     @Autowired
-    public DataSource dataSource(DatabaseConfiguration dbConfig) {
+    public DataSource dataSource(DatabaseInfo dbConfig) {
         HikariDataSource dataSource = new HikariDataSource();
 
         dataSource.setDriverClassName(dbConfig.getDiverClass());

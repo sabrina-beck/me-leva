@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Pessoa {
 
     private String email;
-    private String senha; //mudar no esquema e criptografar
+    private String senha; //mudar no esquema
     private String nome;
     private String sobrenome;
     private Celular celular;
@@ -24,8 +24,8 @@ public class Pessoa {
 
     public Pessoa(String email, String senha, String nome, String sobrenome, Celular celular, LocalDate data_de_nascimento) {
         this.email = email;
-        this.senha = senha;
         this.nome = nome;
+        this.senha = senha;
         this.sobrenome = sobrenome;
         this.celular = celular;
         this.dataDeNascimento = data_de_nascimento;
@@ -37,6 +37,10 @@ public class Pessoa {
 
     public String getSenha() {
         return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -54,4 +58,5 @@ public class Pessoa {
     public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
+
 }

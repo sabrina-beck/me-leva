@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author sabrina on 16/05/16.
  */
 @Component
-public class DatabaseConfiguration {
+public class DatabaseInfo {
 
     @Value("${db.meleva.jdbc.url}")
     private String jdbcUrl;
