@@ -1,7 +1,9 @@
 package com.meleva.aplicacao.config;
 
+import com.meleva.dao.CarroDao;
 import com.meleva.dao.PessoaDao;
 import com.meleva.seguranca.HashFunction;
+import com.meleva.service.pessoa.CarroService;
 import com.meleva.service.pessoa.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,12 @@ public class ServicesConfiguration {
     @Autowired
     PessoaService pessoaService(HashFunction hashFunction, PessoaDao pessoaDao) {
         return new PessoaService(hashFunction, pessoaDao);
+    }
+
+    @Bean
+    @Autowired
+    CarroService carroService(CarroDao carroDao) {
+        return new CarroService(carroDao);
     }
 
 }

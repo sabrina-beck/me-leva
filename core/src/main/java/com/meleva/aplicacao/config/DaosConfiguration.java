@@ -1,5 +1,6 @@
 package com.meleva.aplicacao.config;
 
+import com.meleva.dao.CarroDao;
 import com.meleva.dao.PessoaDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class DaosConfiguration {
     @Autowired
     public PessoaDao pessoaDao(JdbcTemplate jdbcTemplate) {
         return new PessoaDao(jdbcTemplate);
+    }
+
+    @Bean
+    @Autowired
+    public CarroDao carroDao(JdbcTemplate jdbcTemplate) {
+        return new CarroDao(jdbcTemplate);
     }
 
 }
