@@ -30,15 +30,7 @@ public class PessoaService {
     }
 
     public Optional<PessoaTO> buscaPorEmail(String email) {
-        return pessoaDao.buscaPorEmail(email)
-                .map(p -> PessoaTO.builder()
-                        .email(p.getEmail())
-                        .nome(p.getNome())
-                        .sobrenome(p.getSobrenome())
-                        .celular(p.getCelular())
-                        .dataDeNascimento(p.getDataDeNascimento())
-                        .build()
-                );
+        return pessoaDao.buscaPorEmail(email);
     }
 
     public LoginResult login(LoginData loginData) {

@@ -1,8 +1,7 @@
 package com.meleva.dao.pessoa.command;
 
-import com.meleva.modelo.Celular;
-import com.meleva.modelo.Pessoa;
-import com.meleva.modelo.builder.PessoaBuilder;
+import com.meleva.dao.pessoa.PessoaDao;
+import com.meleva.service.pessoa.to.PessoaTO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,7 +14,7 @@ import java.util.function.Function;
 /**
  * @author sabrina on 16/05/16.
  */
-public class BuscaPessoaPorEmailCommand implements Function<String, Optional<Pessoa>> {
+public class BuscaPessoaPorEmailCommand implements Function<String, Optional<PessoaTO>> {
 
     private static final String SELECT_PESSOA_POR_EMAIL = "SELECT * FROM pessoa WHERE email = :email";
 
@@ -25,21 +24,12 @@ public class BuscaPessoaPorEmailCommand implements Function<String, Optional<Pes
         this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
-    public Optional<Pessoa> apply(String email) {
+    public Optional<PessoaTO> apply(String email) {
         Map<String, Object> parameters = new HashMap();
         parameters.put("email", email);
 
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SELECT_PESSOA_POR_EMAIL, parameters, (rs, i) ->
-                new PessoaBuilder()
-                        .email(rs.getString("email"))
-                        .senha(rs.getString("senha"))
-                        .nome(rs.getString("nome"))
-                        .sobrenome(rs.getString("sobrenome"))
-                        .celular(new Celular(rs.getInt("ddi_celular"), rs.getInt("ddd_celular"), rs.getInt("numero_celular")))
-                        .dataDeNascimento(rs.getTimestamp("data_de_nascimento").toLocalDateTime().toLocalDate())
-                        .build()
-            ));
+            return Optional.of(jdbcTemplate.queryForObject(SELECT_PESSOA_POR_EMAIL, parameters, PessoaDao.PESSOA_MAPPER));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
