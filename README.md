@@ -1,4 +1,4 @@
-# me-leva
+# Me leva!
 Rede social de caronas criada como parte de um trabalho da disciplica de Banco de Dados da Unicamp.
 
 # Instruções para ambiente de desenvolvimento
@@ -8,6 +8,14 @@ O projeto usa maven para controle de dependências e build. Para fazer o build d
 ```mvn clean install```
 
 Para subir o servidor local, basta rodar a main da classe com.meleva.aplicacao.server.Sever. Isso subirá um servidor em http://localhost:8080. Você pode usar uma ide de sua preferência para subir o servidor ou rodar o próprio jar gerado no build do projeto. Se usar uma ide diferente de Eclipse e Intellij não se esqueça de adicionar os arquivos apropriados no gitignore
+
+## Banco de Dados
+Neste projeto utilizamos o banco de dados postgres. Se for utilizar o banco local crie um usuário com nome ```postgres``` e senha ```postgres```, depois crie o banco de dados:
+
+```
+CREATE DATABASE meleva;
+ALTER DATABASE meleva OWNER TO postgres
+```
 
 Para rodar os scripts de banco de dados, vá para o diretório meleva-db e execute
 
