@@ -6,6 +6,14 @@
     <groupId>com.meleva</groupId>
     <artifactId>me-leva</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <packaging>pom</packaging>
       
     <name>Me leva!</name>
@@ -14,11 +22,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <java.version>1.8</java.version>
+
+        <postgresql.version>9.1-901.jdbc4</postgresql.version>
+        <junit.version>4.12</junit.version>
+        <hamcrest.version>1.3</hamcrest.version>
     </properties>
 
     <modules>
         <module>core</module>
         <module>db</module>
+        <module>postgres-integration-tests</module>
     </modules>
 
 </project>
