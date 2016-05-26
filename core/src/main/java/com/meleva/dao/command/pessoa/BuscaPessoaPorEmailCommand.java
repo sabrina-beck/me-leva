@@ -1,4 +1,4 @@
-package com.meleva.dao.command;
+package com.meleva.dao.command.pessoa;
 
 import com.meleva.modelo.Celular;
 import com.meleva.modelo.Pessoa;
@@ -33,18 +33,16 @@ public class BuscaPessoaPorEmailCommand implements Function<String, Optional<Pes
         parameters.put("email", email);
 
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SELECT_PESSOA_POR_EMAIL, parameters, new RowMapper<Pessoa>() {
-                public Pessoa mapRow(ResultSet rs, int i) throws SQLException {
-                    return new PessoaBuilder()
-                            .email(rs.getString("email"))
-                            .senha(rs.getString("senha"))
-                            .nome(rs.getString("nome"))
-                            .sobrenome(rs.getString("sobrenome"))
-                            .celular(new Celular(rs.getInt("ddi_celular"), rs.getInt("ddd_celular"), rs.getInt("numero_celular")))
-                            .dataDeNascimento(rs.getTimestamp("data_de_nascimento").toLocalDateTime().toLocalDate())
-                            .build();
-                }
-            }));
+            return Optional.of(jdbcTemplate.queryForObject(SELECT_PESSOA_POR_EMAIL, parameters, (rs, i) ->
+                new PessoaBuilder()
+                        .email(rs.getString("email"))
+                        .senha(rs.getString("senha"))
+                        .nome(rs.getString("nome"))
+                        .sobrenome(rs.getString("sobrenome"))
+                        .celular(new Celular(rs.getInt("ddi_celular"), rs.getInt("ddd_celular"), rs.getInt("numero_celular")))
+                        .dataDeNascimento(rs.getTimestamp("data_de_nascimento").toLocalDateTime().toLocalDate())
+                        .build()
+            ));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

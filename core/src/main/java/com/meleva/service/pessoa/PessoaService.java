@@ -1,8 +1,10 @@
 package com.meleva.service.pessoa;
 
-import com.meleva.service.pessoa.to.PessoaTO;
 import com.meleva.dao.PessoaDao;
 import com.meleva.modelo.Pessoa;
+import com.meleva.service.pessoa.results.LoginResult;
+import com.meleva.service.pessoa.to.LoginData;
+import com.meleva.service.pessoa.to.PessoaTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;
@@ -13,9 +15,11 @@ import java.util.Optional;
 public class PessoaService {
 
     private final PessoaDao pessoaDao;
+    private final AuthenticationService authenticator;
 
-    public PessoaService(PessoaDao pessoaDao) {
+    public PessoaService(PessoaDao pessoaDao, AuthenticationService authenticator) {
         this.pessoaDao = pessoaDao;
+        this.authenticator = authenticator;
     }
 
     public void cadastro(Pessoa pessoa) {
@@ -27,6 +31,22 @@ public class PessoaService {
     public Optional<PessoaTO> buscaPorEmail(String email) {
         return pessoaDao.buscaPorEmail(email)
                 .map(p -> new PessoaTO(p.getEmail(), p.getNome(), p.getSobrenome(), p.getCelular(), p.getDataDeNascimento()));
+    }
+
+    public LoginResult login(LoginData loginData) {
+        Optional<String> hashedPwd = pessoaDao.buscaSenha(loginData.getEmail());
+
+        if (!hashedPwd.isPresent()) {
+            return LoginResult.builder().sucesso(false).build();
+        }
+
+        if (!BCrypt.checkpw(loginData.getSenha(), hashedPwd.get())) {
+            return LoginResult.builder().sucesso(false).build();
+        }
+
+        String token = authenticator.generateToken(loginData.getEmail());
+
+        return LoginResult.builder().sucesso(true).token(token).build();
     }
 
 }

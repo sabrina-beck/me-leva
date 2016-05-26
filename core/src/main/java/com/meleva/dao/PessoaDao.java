@@ -1,7 +1,8 @@
 package com.meleva.dao;
 
-import com.meleva.dao.command.BuscaPessoaPorEmailCommand;
-import com.meleva.dao.command.CriarPessoaCommand;
+import com.meleva.dao.command.pessoa.BuscaPessoaPorEmailCommand;
+import com.meleva.dao.command.pessoa.BuscaSenhaDePessoaPorEmail;
+import com.meleva.dao.command.pessoa.CriarPessoaCommand;
 import com.meleva.modelo.Pessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -23,5 +24,9 @@ public class PessoaDao {
 
     public Optional<Pessoa> buscaPorEmail(String email) {
         return new BuscaPessoaPorEmailCommand(jdbcTemplate).apply(email);
+    }
+
+    public Optional<String> buscaSenha(String email) {
+        return new BuscaSenhaDePessoaPorEmail(jdbcTemplate).apply(email);
     }
 }

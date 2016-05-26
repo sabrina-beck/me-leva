@@ -1,4 +1,4 @@
-package com.meleva.dao.command;
+package com.meleva.dao.command.pessoa;
 
 
 import com.meleva.modelo.Pessoa;

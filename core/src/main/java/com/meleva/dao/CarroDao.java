@@ -1,11 +1,8 @@
 package com.meleva.dao;
 
 import com.meleva.dao.command.BuscaCarroPorEmailMotoristaCommand;
-import com.meleva.dao.command.BuscaPessoaPorEmailCommand;
 import com.meleva.dao.command.CriarCarroCommand;
-import com.meleva.dao.command.CriarPessoaCommand;
 import com.meleva.modelo.Carro;
-import com.meleva.modelo.Pessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Optional;
