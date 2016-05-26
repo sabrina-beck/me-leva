@@ -2,6 +2,7 @@ package com.meleva.aplicacao.controller;
 
 import com.meleva.modelo.Pessoa;
 import com.meleva.service.pessoa.PessoaService;
+import com.meleva.service.pessoa.to.PessoaTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class PessoaController {
     }
 
     @RequestMapping(value = "/busca", method = RequestMethod.GET)
-    public Pessoa buscar(@RequestParam("email") String email) {
+    public PessoaTO buscar(@RequestParam("email") String email) {
         return pessoaService.buscaPorEmail(email)
                 .orElse(null);
     }

@@ -1,8 +1,9 @@
 package com.meleva.service.pessoa;
 
+import com.meleva.service.pessoa.to.PessoaTO;
 import com.meleva.dao.PessoaDao;
 import com.meleva.modelo.Pessoa;
-import com.meleva.seguranca.HashFunction;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;
 
@@ -11,21 +12,21 @@ import java.util.Optional;
  */
 public class PessoaService {
 
-    private final HashFunction hashFunction;
     private final PessoaDao pessoaDao;
 
-    public PessoaService(HashFunction hashFunction, PessoaDao pessoaDao) {
-        this.hashFunction = hashFunction;
+    public PessoaService(PessoaDao pessoaDao) {
         this.pessoaDao = pessoaDao;
     }
 
     public void cadastro(Pessoa pessoa) {
-        pessoa.setSenha(hashFunction.apply(pessoa.getSenha()));
+        String hashedPwd = BCrypt.hashpw(pessoa.getSenha(), BCrypt.gensalt());
+        pessoa.setSenha(hashedPwd);
         pessoaDao.criar(pessoa);
     }
 
-    public Optional<Pessoa> buscaPorEmail(String email) {
-        return pessoaDao.buscaPorEmail(email);
+    public Optional<PessoaTO> buscaPorEmail(String email) {
+        return pessoaDao.buscaPorEmail(email)
+                .map(p -> new PessoaTO(p.getEmail(), p.getNome(), p.getSobrenome(), p.getCelular(), p.getDataDeNascimento()));
     }
 
 }
