@@ -2,8 +2,9 @@ package com.meleva.service.pessoa;
 
 import com.meleva.dao.pessoa.PessoaDao;
 import com.meleva.modelo.Pessoa;
+import com.meleva.service.pessoa.requests.TrocarSenhaRequest;
 import com.meleva.service.pessoa.results.LoginResult;
-import com.meleva.service.pessoa.to.LoginData;
+import com.meleva.service.pessoa.requests.LoginRequest;
 import com.meleva.service.pessoa.to.PessoaTO;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -33,14 +34,8 @@ public class PessoaService {
         return pessoaDao.buscaPorEmail(email);
     }
 
-    public LoginResult login(LoginData loginData) {
-        Optional<String> hashedPwd = pessoaDao.buscaSenha(loginData.getEmail());
-
-        if (!hashedPwd.isPresent()) {
-            return LoginResult.builder().sucesso(false).build();
-        }
-
-        if (!BCrypt.checkpw(loginData.getSenha(), hashedPwd.get())) {
+    public LoginResult login(LoginRequest loginData) {
+        if (!validarSenha(loginData.getEmail(), loginData.getSenha())) {
             return LoginResult.builder().sucesso(false).build();
         }
 
@@ -55,5 +50,29 @@ public class PessoaService {
 
     public List<PessoaTO> listar() {
         return pessoaDao.listar();
+    }
+
+    public boolean trocarSenha(TrocarSenhaRequest request) {
+        if(!validarSenha(request.getEmail(), request.getSenhaAntiga())) {
+            return false;
+        }
+
+        String hashedPwd = BCrypt.hashpw(request.getNovaSenha(), BCrypt.gensalt());
+        pessoaDao.editarSenha(request.getEmail(), hashedPwd);
+        return true;
+    }
+
+    private boolean validarSenha(String email, String senha) {
+        Optional<String> hashedPwd = pessoaDao.buscaSenha(email);
+
+        if (!hashedPwd.isPresent()) {
+            return false;
+        }
+
+        if (!BCrypt.checkpw(senha, hashedPwd.get())) {
+            return false;
+        }
+
+        return true;
     }
 }

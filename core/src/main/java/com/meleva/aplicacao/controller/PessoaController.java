@@ -1,6 +1,8 @@
 package com.meleva.aplicacao.controller;
 
 import com.meleva.service.pessoa.PessoaService;
+import com.meleva.service.pessoa.requests.TrocarSenhaRequest;
+import com.meleva.service.pessoa.results.DefaultResponse;
 import com.meleva.service.pessoa.to.PessoaTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,12 @@ public class PessoaController {
     @RequestMapping(method = RequestMethod.GET)
     public List<PessoaTO> listar() {
         return pessoaService.listar();
+    }
+
+    @RequestMapping(value = "/trocarsenha", method = RequestMethod.PUT)
+    public DefaultResponse trocarSenha(@RequestBody TrocarSenhaRequest request) {
+        boolean trocou = pessoaService.trocarSenha(request);
+        return new DefaultResponse(trocou);
     }
 
 }

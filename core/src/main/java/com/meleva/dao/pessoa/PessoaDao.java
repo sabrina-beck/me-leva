@@ -52,4 +52,8 @@ public class PessoaDao {
     public List<PessoaTO> listar() {
         return new ListarPessoasCommand(jdbcTemplate).get();
     }
+
+    public void editarSenha(String email, String novaSenha) {
+        new EditarSenhaDePessoaCommand(jdbcTemplate).accept(email, novaSenha);
+    }
 }

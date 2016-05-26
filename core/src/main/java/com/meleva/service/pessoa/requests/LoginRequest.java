@@ -1,9 +1,9 @@
-package com.meleva.service.pessoa.to;
+package com.meleva.service.pessoa.requests;
 
 /**
  * @author sabrina on 26/05/16.
  */
-public class LoginData {
+public class LoginRequest {
 
     private String email;
     private String senha;

@@ -7,16 +7,16 @@ import java.util.Optional;
  */
 public class LoginResult {
 
-    private boolean sucesso;
+    private boolean logado;
     private Optional<String> token;
 
     public LoginResult(boolean sucesso, Optional<String> token) {
-        this.sucesso = sucesso;
+        this.logado = sucesso;
         this.token = token;
     }
 
-    public boolean isSucesso() {
-        return sucesso;
+    public boolean isLogado() {
+        return logado;
     }
 
     public Optional<String> getToken() {

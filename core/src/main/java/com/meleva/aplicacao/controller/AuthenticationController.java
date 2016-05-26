@@ -3,8 +3,9 @@ package com.meleva.aplicacao.controller;
 import com.meleva.service.pessoa.AuthenticationService;
 import com.meleva.modelo.Pessoa;
 import com.meleva.service.pessoa.PessoaService;
+import com.meleva.service.pessoa.results.DefaultResponse;
 import com.meleva.service.pessoa.results.LoginResult;
-import com.meleva.service.pessoa.to.LoginData;
+import com.meleva.service.pessoa.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +31,14 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean login(HttpServletResponse response, @RequestBody LoginData loginData) {
+    public DefaultResponse login(HttpServletResponse response, @RequestBody LoginRequest loginData) {
         LoginResult result = pessoaService.login(loginData);
 
-        if(result.isSucesso()) {
+        if(result.isLogado()) {
             response.addCookie(new Cookie(AuthenticationService.AUTH_COOKIE, result.getToken().get()));
         }
 
-        return result.isSucesso();
+        return new DefaultResponse(result.isLogado());
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
