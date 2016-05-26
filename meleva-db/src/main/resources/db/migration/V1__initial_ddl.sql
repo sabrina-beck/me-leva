@@ -1,6 +1,7 @@
 CREATE TABLE pessoa(
 	email VARCHAR (255),
 	nome VARCHAR (255) NOT NULL,
+    senha VARCHAR (255) NOT NULL,
     sobrenome VARCHAR(255) NOT NULL,
     ddi_celular INTEGER NOT NULL,
     ddd_celular INTEGER NOT NULL,

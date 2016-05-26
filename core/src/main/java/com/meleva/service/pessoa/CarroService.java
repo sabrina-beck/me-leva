@@ -1,6 +1,6 @@
 package com.meleva.service.pessoa;
 
-import com.meleva.dao.CarroDao;
+import com.meleva.dao.carro.CarroDao;
 import com.meleva.modelo.Carro;
 
 import java.util.Optional;

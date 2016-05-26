@@ -1,15 +1,9 @@
-package com.meleva.dao.command.pessoa;
+package com.meleva.dao.pessoa.command;
 
-import com.meleva.modelo.Celular;
-import com.meleva.modelo.Pessoa;
-import com.meleva.modelo.builder.PessoaBuilder;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

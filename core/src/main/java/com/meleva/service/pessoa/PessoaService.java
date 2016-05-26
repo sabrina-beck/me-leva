@@ -1,12 +1,13 @@
 package com.meleva.service.pessoa;
 
-import com.meleva.dao.PessoaDao;
+import com.meleva.dao.pessoa.PessoaDao;
 import com.meleva.modelo.Pessoa;
 import com.meleva.service.pessoa.results.LoginResult;
 import com.meleva.service.pessoa.to.LoginData;
 import com.meleva.service.pessoa.to.PessoaTO;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,7 +31,14 @@ public class PessoaService {
 
     public Optional<PessoaTO> buscaPorEmail(String email) {
         return pessoaDao.buscaPorEmail(email)
-                .map(p -> new PessoaTO(p.getEmail(), p.getNome(), p.getSobrenome(), p.getCelular(), p.getDataDeNascimento()));
+                .map(p -> PessoaTO.builder()
+                        .email(p.getEmail())
+                        .nome(p.getNome())
+                        .sobrenome(p.getSobrenome())
+                        .celular(p.getCelular())
+                        .dataDeNascimento(p.getDataDeNascimento())
+                        .build()
+                );
     }
 
     public LoginResult login(LoginData loginData) {
@@ -49,4 +57,11 @@ public class PessoaService {
         return LoginResult.builder().sucesso(true).token(token).build();
     }
 
+    public void editar(PessoaTO pessoa) {
+        pessoaDao.editar(pessoa);
+    }
+
+    public List<PessoaTO> listar() {
+        return pessoaDao.listar();
+    }
 }

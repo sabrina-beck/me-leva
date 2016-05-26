@@ -30,39 +30,61 @@ public class PessoaTO {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getSobrenome() {
         return sobrenome;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
     public Celular getCelular() {
         return celular;
-    }
-
-    public void setCelular(Celular celular) {
-        this.celular = celular;
     }
 
     public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String email;
+        private String nome;
+        private String sobrenome;
+        private Celular celular;
+        private LocalDate dataDeNascimento;
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder sobrenome(String sobrenome) {
+            this.sobrenome = sobrenome;
+            return this;
+        }
+
+        public Builder celular(Celular celular) {
+            this.celular = celular;
+            return this;
+        }
+
+        public Builder dataDeNascimento(LocalDate dataDeNascimento) {
+            this.dataDeNascimento = dataDeNascimento;
+            return this;
+        }
+
+        public PessoaTO build() {
+            return new PessoaTO(email, nome, sobrenome, celular, dataDeNascimento);
+        }
+
     }
 }
