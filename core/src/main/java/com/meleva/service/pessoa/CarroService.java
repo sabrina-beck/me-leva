@@ -1,10 +1,7 @@
 package com.meleva.service.pessoa;
 
 import com.meleva.dao.CarroDao;
-import com.meleva.dao.PessoaDao;
 import com.meleva.modelo.Carro;
-import com.meleva.modelo.Pessoa;
-import com.meleva.seguranca.HashFunction;
 
 import java.util.Optional;
 
