@@ -42,7 +42,9 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void logout(HttpServletResponse response) {
-        response.addCookie(new Cookie(AuthenticationService.AUTH_COOKIE, ""));
+        Cookie cookie = new Cookie(AuthenticationService.AUTH_COOKIE, "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 
 }
