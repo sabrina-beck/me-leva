@@ -1,7 +1,7 @@
 package com.meleva.aplicacao.config;
 
-import com.meleva.dao.carro.CarroDao;
-import com.meleva.dao.pessoa.PessoaDao;
+import com.meleva.dao.CarroDao;
+import com.meleva.dao.PessoaDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

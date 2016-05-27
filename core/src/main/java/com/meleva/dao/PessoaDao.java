@@ -1,4 +1,4 @@
-package com.meleva.dao.pessoa;
+package com.meleva.dao;
 
 import com.meleva.dao.pessoa.command.*;
 import com.meleva.modelo.Celular;

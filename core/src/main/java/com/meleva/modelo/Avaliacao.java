@@ -21,7 +21,20 @@ public class Avaliacao {
     private Float nota;
     private String comentarios;
 
-    public String getEmailAvaliador() {
+    public Avaliacao(String emailAvaliador, LocalDate data, LocalTime horarioDeSaida, String cidade, String placa,
+			String emailMotorista, Float nota, String comentarios) {
+		super();
+		this.emailAvaliador = emailAvaliador;
+		this.data = data;
+		this.horarioDeSaida = horarioDeSaida;
+		this.cidade = cidade;
+		this.placa = placa;
+		this.emailMotorista = emailMotorista;
+		this.nota = nota;
+		this.comentarios = comentarios;
+	}
+
+	public String getEmailAvaliador() {
         return emailAvaliador;
     }
 

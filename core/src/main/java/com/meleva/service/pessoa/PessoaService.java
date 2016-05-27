@@ -1,6 +1,6 @@
 package com.meleva.service.pessoa;
 
-import com.meleva.dao.pessoa.PessoaDao;
+import com.meleva.dao.PessoaDao;
 import com.meleva.modelo.Pessoa;
 import com.meleva.service.pessoa.requests.TrocarSenhaRequest;
 import com.meleva.service.pessoa.results.LoginResult;

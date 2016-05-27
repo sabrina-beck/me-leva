@@ -1,4 +1,4 @@
-package com.meleva.dao.carro;
+package com.meleva.dao;
 
 import com.meleva.dao.carro.command.BuscaCarroPorEmailMotoristaCommand;
 import com.meleva.dao.carro.command.CriarCarroCommand;

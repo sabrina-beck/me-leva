@@ -1,6 +1,6 @@
 package com.meleva.dao.pessoa.command;
 
-import com.meleva.dao.pessoa.PessoaDao;
+import com.meleva.dao.PessoaDao;
 import com.meleva.service.pessoa.to.PessoaTO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

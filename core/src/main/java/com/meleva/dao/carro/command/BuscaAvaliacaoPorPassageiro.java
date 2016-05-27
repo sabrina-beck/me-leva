@@ -12,32 +12,33 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.meleva.modelo.Carro;
-import com.meleva.modelo.builder.CarroBuilder;
+import com.meleva.modelo.Avaliacao;
+import com.meleva.modelo.builder.AvaliacaoBuilder;
 
-public class BuscaCarroPorEmailMotoristaCommand implements Function<String, Optional<Carro>> {
+public class BuscaAvaliacaoPorPassageiro implements Function<String, Optional<Avaliacao>> {
 
-    private static final String SELECT_CARRO_POR_EMAIL = "SELECT * FROM carro WHERE email_motorista = :email";
+    private static final String SELECT_AVALIACAO_POR_PASSAGEIRO = "SELECT * FROM avaliacao WHERE emailAvaliador = :email";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public BuscaCarroPorEmailMotoristaCommand(JdbcTemplate jdbcTemplate) {
+    public BuscaAvaliacaoPorPassageiro(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
-    public Optional<Carro> apply(String email) {
+    public Optional<Avaliacao> apply(String email) {
         Map<String, Object> parameters = new HashMap();
         parameters.put("email", email);
 
         try {
-            return Optional.of(jdbcTemplate.queryForObject(SELECT_CARRO_POR_EMAIL, parameters, new RowMapper<Carro>() {
-                public Carro mapRow(ResultSet rs, int i) throws SQLException {
-                    return new CarroBuilder()
+            return Optional.of(jdbcTemplate.queryForObject(SELECT_AVALIACAO_POR_PASSAGEIRO, parameters, new RowMapper<Avaliacao>() {
+                public Avaliacao mapRow(ResultSet rs, int i) throws SQLException {
+                    return new AvaliacaoBuilder()
+                            .emailAvaliador(rs.getString("cidade"))
                             .cidade(rs.getString("cidade"))
                             .placa(rs.getString("placa"))
-                            .emailMotorista(rs.getString("email_motorista"))
-                            .modelo(rs.getString("modelo"))
-                            .cor(rs.getString("cor"))
+                            .emailMotorista(rs.getString("emailMotorista"))
+                            .nota(rs.getFloat("nota"))
+                            .comentarios(rs.getString("comentarios"))
                             .build();
                 }
             }));
@@ -45,4 +46,5 @@ public class BuscaCarroPorEmailMotoristaCommand implements Function<String, Opti
             return Optional.empty();
         }
     }
+
 }
