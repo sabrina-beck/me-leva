@@ -23,7 +23,9 @@
 
         <java.version>1.8</java.version>
 
+        <spring.boot.version>1.3.5.RELEASE</spring.boot.version>
         <postgresql.version>9.1-901.jdbc4</postgresql.version>
+
         <junit.version>4.12</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
     </properties>
@@ -31,7 +33,6 @@
     <modules>
         <module>core</module>
         <module>db</module>
-        <module>postgres-integration-tests</module>
     </modules>
 
 </project>
