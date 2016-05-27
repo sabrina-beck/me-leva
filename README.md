@@ -7,7 +7,11 @@ O projeto usa maven para controle de dependências e build. Para fazer o build d
 
 ```mvn clean install```
 
-Para subir o servidor local, basta rodar a main da classe com.meleva.aplicacao.server.Sever. Isso subirá um servidor em http://localhost:8080. Você pode usar uma ide de sua preferência para subir o servidor ou rodar o próprio jar gerado no build do projeto. Se usar uma ide diferente de Eclipse e Intellij não se esqueça de adicionar os arquivos apropriados no gitignore
+Para subir o servidor local, basta rodar a main da classe com.meleva.aplicacao.server.Sever.
+Você precisa de um banco de dados postgres para subir a aplicação.
+Se configurá-lo localmente, você deve subir o servidor com o parâmetro -Dspring.profiles.active=dev, caso contrário, use o ambiente de staging com o parâmetro -Dspring.profiles.active=staging
+Isso subirá um servidor em http://localhost:8080.
+Você pode usar uma ide de sua preferência para subir o servidor ou rodar o próprio jar gerado no build do projeto. Se usar uma ide diferente de Eclipse e Intellij não se esqueça de adicionar os arquivos apropriados no gitignore
 
 ## Banco de Dados
 Neste projeto utilizamos o banco de dados postgres. Se for utilizar o banco local crie um usuário com nome ```postgres``` e senha ```postgres```, depois crie o banco de dados:
