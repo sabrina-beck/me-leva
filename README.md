@@ -1,7 +1,7 @@
 # Me leva!
 Rede social de caronas criada como parte de um trabalho da disciplica de Banco de Dados da Unicamp.
 
-# Instruções para ambiente de desenvolvimento
+# Instruções para Ambiente de Desenvolvimento
 
 O projeto usa maven para controle de dependências e build. Para fazer o build do projeto use o comando:
 
@@ -28,3 +28,8 @@ Esse comando usará por padrão os dados de conexão que estão no arquivo flywa
 Para passar dados de outro banco, ou crie o seu properties ou execute o seguinte comando
 
 ```mvn flyway:migrate -Dflyway.url=... -Dflyway.user=... -Dflyway.password=...```
+
+#Rodando Testes de Integração
+Para rodar os testes de integração que sobem um postgres embarcado use o comando
+
+```mvn clean install -Pintegration-test```

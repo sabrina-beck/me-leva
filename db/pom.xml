@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <postgresql.version>9.1-901.jdbc4</postgresql.version>
+        <skip.integration-postgres.tests>true</skip.integration-postgres.tests>
 
         <runSuite>**/PostgresTestSuite.class</runSuite>
     </properties>
@@ -110,8 +111,24 @@
                     <includes>
                         <include>${runSuite}</include>
                     </includes>
+                    <skipTests>${skip.integration-postgres.tests}</skipTests>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <property>
+                    <name>integration-test</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.integration-postgres.tests>false</skip.integration-postgres.tests>
+            </properties>
+        </profile>
+    </profiles>
 </project>
